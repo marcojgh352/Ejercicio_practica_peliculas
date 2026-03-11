@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Exercise</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Movie App</h1>
+    </header>
+
+    <section id="form-section">
+      <h2>Agregar Nueva Película</h2>
+      <form id="movieForm">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required />
+
+        <label for="year">Año:</label>
+        <input type="number" id="year" name="year" required />
+
+        <label for="description">Descripción:</label>
+        <textarea name="description" id="description" rows="3"></textarea>
+        <!-- <textarea
+          id="description"
+          name="description"
+          rows="3"
+          required
+        ></textarea> -->
+
+        <label for="photo">URL de la foto:</label>
+        <input type="url" id="photo" name="photo" />
+
+        <label for="genre">Género:</label>
+        <select id="genre" name="genre" required>
+          <option value="">Selecciona un género</option>
+          <option value="terror">Terror</option>
+          <option value="acción">Acción</option>
+          <option value="comedia">Comedia</option>
+          <option value="romántica">Romántica</option>
+        </select>
+
+        <button type="submit" id="submit">Añadir Película</button>
+      </form>
+    </section>
+
+    
+    <section id="filters">
+      <h2>Filtros</h2>
+      <label for="filter-genre">Filtrar por género:</label>
+      <select id="filter-genre">
+        <option value="">Todos</option>
+        <option value="terror">Terror</option>
+        <option value="acción">Acción</option>
+        <option value="comedia">Comedia</option>
+        <option value="romántica">Romántica</option>
+      </select>
+
+      <label for="filter-name">Filtrar por nombre:</label>
+      <input type="text" id="filter-name" placeholder="Escribe el título" />
+    </section>
+
+    <section id="table-section">
+      <h2>Películas</h2>
+      <table id="moviesTable">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Año</th>
+            <th>Descripción</th>
+            <th>Foto</th>
+            <th>Género</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- PELÍCULAS DINÁMICAS  -->
+        </tbody>
+      </table>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
