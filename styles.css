@@ -1,100 +1,244 @@
+/* ===================
+   VARIABLES DE COLOR
+   =================== */
+:root {
+  --color-fondo: #1c1c1c;
+  --color-principal: #b71c1c;
+  --color-secundario: #f44336;
+  --color-acento: #ffb300;
+  --color-texto: #ffffff;
+  --color-form-bg: #2a2a2a;
+  --color-input-bg: #3a3a3a;
+  --color-input-texto: #ffffff;
+  --color-error: #ff5252;
+  --color-boton-editar: #388e3c;
+  --color-boton-borrar: #d32f2f;
+}
+
+/* FUENTE */
+@font-face {
+  font-family: 'Rubik';
+  src: url(./assets/Rubik.ttf);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Rubik';
 }
 
 body {
-  background-color: #f4f4f4;
-  padding: 20px;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
+/* HEADER */
 header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 h1 {
-  color: #333;
+  display: inline-block;
+  background: linear-gradient(30deg, black, var(--color-principal));
+  padding: 30px 60px;
+  color: var(--color-texto);
+  font-size: 3rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
+/* CONTENEDOR PRINCIPAL */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* SECCIONES */
 section {
-  background: #fff;
+  background: var(--color-form-bg);
   padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-form .form-group {
-  margin-bottom: 15px;
+/* Formulario y filtros */
+#form-section, #filters {
+  flex: 1 1 300px;
+  min-width: 280px;
 }
 
+/* Tabla */
+#table-section {
+  flex: 2 1 600px;
+  min-width: 300px;
+  overflow-x: auto;
+}
+
+/* FORMULARIOS */
 form label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 form input,
 form textarea,
 form select {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 12px;
+  background-color: var(--color-input-bg);
+  color: var(--color-input-texto);
+  font-size: 1rem;
 }
 
+form textarea { resize: none; }
+
 form button {
-  padding: 10px 20px;
-  background-color: #007bff;
+  padding: 12px 25px;
+  background-color: var(--color-principal);
   border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
+  color: var(--color-texto);
+  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 form button:hover {
+  background-color: var(--color-secundario);
   transform: scale(1.05);
-  background-color: #0056b3;
 }
 
-/* Tabla */
+/* TABLA */
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
 }
 
-table th,
-table td {
-  border: 1px solid #ccc;
+table th, table td {
   padding: 10px;
+  border: 1px solid #555;
   text-align: left;
 }
 
 table th {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+  font-weight: 600;
 }
 
-table img {
-  width: 60px;
-  height: auto;
-  border-radius: 4px;
+table img { width: 70px; border-radius: 6px; }
+
+/* BOTONES SVG ESCALABLES */
+table button {
+  padding: 0;
+  border-radius: 50%;
+  color: transparent;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.error {
-  border: 2px solid red;
-  background-color: #ffe6e6;
+/* table button:nth-child(1) { background-color: var(--color-boton-editar); }
+table button:nth-child(2) { background-color: var(--color-boton-borrar); } */
+
+table button:hover { transform: scale(1.05); }
+
+table button::before {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 60%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* ID */
+/* SVG lápiz */
+table button:nth-child(1)::before {
+  background-image: url(./assets/pencil.svg);
+}
 
-#description {
-  resize: none;
+/* SVG papelera */
+table button:nth-child(2)::before {
+  background-image: url(./assets/trash.svg);
+}
+
+/* MODAL */
+#editModal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
+#editModal.modal { display:flex; }
+#editModal .modal-content { background:var(--color-form-bg); padding:30px; border-radius:12px; width:90%; max-width:600px; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
+
+#editForm .button-group { display:flex; justify-content:space-between; gap:10px; }
+#editForm .button-group button { flex:1; padding:12px; border-radius:6px; }
+#cancelEdit { background-color: var(--color-boton-borrar); }
+
+/* MEDIA QUERIES RESPONSIVE */
+
+/* Móviles <480px */
+@media screen and (max-width: 480px) {
+  h1 { font-size: 2rem; padding: 20px; }
+  table img { width: 50px; }
+
+  /* Tabla se transforma en cards */
+  table, thead, tbody, th, td, tr { display: block; }
+  thead tr { display: none; }
+  tr {
+    margin-bottom: 15px;
+    background: var(--color-form-bg);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    text-align: right;
+    border: none;
+    border-bottom: 1px solid #555;
+  }
+  td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    text-align: left;
+    flex: 1;
+  }
+
+  table button { width: 40px; height: 40px; }
+  table button::before { width: 60%; height: 60%; }
+  #editModal .modal-content { width: 95%; padding: 20px; }
+  main { flex-direction: column; gap: 15px; }
+}
+
+/* Tablets 481px - 1024px */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  h1 { font-size: 2.5rem; padding: 25px; }
+  table img { width: 60px; }
+  table th, table td { font-size: 0.9rem; padding: 8px; }
+  table button { width: 45px; height: 45px; }
+  table button::before { width: 65%; height: 65%; }
+  main { flex-direction: column; gap: 20px; }
+}
+
+/* Escritorio >1024px */
+@media screen and (min-width: 1025px) {
+  main { flex-direction: row; align-items: flex-start; gap: 20px; }
+  table img { width: 70px; }
+  table button { width: 50px; height: 50px; }
+  table button::before { width: 70%; height: 70%; }
 }
