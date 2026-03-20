@@ -75,7 +75,7 @@ const filterName = document.getElementById("filter-name"); // Filtro por nombre
 let editIndex = null; // Índice de la película que se está editando
 
 // ====================
-// FUNCIONES AUXILIARES
+// FUNCIONES 
 // ====================
 
 /**
@@ -252,7 +252,7 @@ form.addEventListener("submit", (event) => {
   form.reset();
 });
 
-// Submit del formulario de edición (modal)
+// Submit del formulario de edición
 editForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
